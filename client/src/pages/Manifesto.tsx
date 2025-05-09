@@ -1,16 +1,20 @@
 import { useState, useEffect, useRef } from "react";
-import { motion, MotionConfig } from "framer-motion";
+import { motion, MotionConfig, AnimatePresence } from "framer-motion";
 import { useGlitchStorm } from "@/hooks/use-key-sequence";
 import { useAttentionScore } from "@/hooks/use-attention-score";
 import { GlitchText } from "@/components/ui/glitch-text";
+import { RGBSplitText } from "@/components/ui/rgb-split";
+import { Button } from "@/components/ui/button";
 import { motionConfig } from "@/lib/motion-settings";
 
 export default function Manifesto() {
   const { isGlitchStormActive } = useGlitchStorm();
   const { incrementScore } = useAttentionScore();
   const [visibleLines, setVisibleLines] = useState<number[]>([]);
+  const [isTypingComplete, setIsTypingComplete] = useState(false);
+  const [skipAnimation, setSkipAnimation] = useState(false);
   const manifestoRef = useRef<HTMLDivElement>(null);
-
+  
   // Track user interactions for attention score
   useEffect(() => {
     const handleInteraction = () => {
@@ -72,12 +76,39 @@ export default function Manifesto() {
     },
   ];
 
-  // Start typing effect when component mounts
+  // Function to show all content immediately
+  const showAllContent = () => {
+    const allIndices = manifestoContent.map((_, index) => index);
+    setVisibleLines(allIndices);
+    setIsTypingComplete(true);
+    setSkipAnimation(true);
+    
+    // Scroll to the beginning
+    if (manifestoRef.current) {
+      manifestoRef.current.scrollTop = 0;
+    }
+  };
+
+  // Preload all content immediately on first render but keep it hidden
   useEffect(() => {
+    // Check if user prefers reduced motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    // If reduced motion is preferred, show all content immediately
+    if (prefersReducedMotion) {
+      showAllContent();
+      return;
+    }
+    
+    // For normal users, continue with the typing effect
     let currentIndex = 0;
     let lineDisplayInterval: NodeJS.Timeout;
 
     const startTyping = () => {
+      // Start with showing the first few lines immediately
+      setVisibleLines([0, 1, 2]);
+      currentIndex = 3;
+
       lineDisplayInterval = setInterval(() => {
         if (currentIndex < manifestoContent.length) {
           setVisibleLines((prev) => [...prev, currentIndex]);
@@ -89,14 +120,15 @@ export default function Manifesto() {
           }
         } else {
           clearInterval(lineDisplayInterval);
+          setIsTypingComplete(true);
         }
-      }, 2000); // Adjust typing speed here
+      }, 500); // Faster typing speed (was 2000ms)
     };
 
-    // Start with a slight delay
+    // Start with a shorter delay
     const initialTimeout = setTimeout(() => {
       startTyping();
-    }, 1000);
+    }, 300); // Shorter initial delay (was 1000ms)
 
     return () => {
       clearTimeout(initialTimeout);
@@ -104,17 +136,38 @@ export default function Manifesto() {
     };
   }, []);
 
+  // Handle key press to skip animation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Space or Enter will skip the animation
+      if ((e.key === " " || e.key === "Enter") && !isTypingComplete) {
+        showAllContent();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isTypingComplete]);
+
   // Render a line of the manifesto
   const renderLine = (content: any, index: number) => {
+    const isVisible = visibleLines.includes(index);
+    
     if (typeof content === "string") {
       return (
-        <p key={index} className={`text-white/90 mb-4 ${visibleLines.includes(index) ? "opacity-100" : "opacity-0"} transition-opacity duration-500`}>
+        <p 
+          key={index} 
+          className={`text-white/90 mb-4 ${isVisible ? "opacity-100" : "opacity-0"} transition-opacity duration-300`}
+        >
           {content}
         </p>
       );
     } else if (content.type === "list") {
       return (
-        <ul key={index} className={`list-disc pl-6 space-y-2 mb-4 ${visibleLines.includes(index) ? "opacity-100" : "opacity-0"} transition-opacity duration-500`}>
+        <ul 
+          key={index} 
+          className={`list-disc pl-6 space-y-2 mb-4 ${isVisible ? "opacity-100" : "opacity-0"} transition-opacity duration-300`}
+        >
           {content.items.map((item: string, i: number) => (
             <li key={i} className="text-white/90">
               {item}
@@ -124,7 +177,10 @@ export default function Manifesto() {
       );
     } else {
       return (
-        <p key={index} className={`${content.color} mb-4 ${visibleLines.includes(index) ? "opacity-100" : "opacity-0"} transition-opacity duration-500`}>
+        <p 
+          key={index} 
+          className={`${content.color} mb-4 ${isVisible ? "opacity-100" : "opacity-0"} transition-opacity duration-300`}
+        >
           {content.text}
         </p>
       );
@@ -138,21 +194,46 @@ export default function Manifesto() {
         <div className="scanlines-overlay"></div>
 
         <motion.section
-          className="relative py-24 bg-cyber-dark min-h-screen"
+          className="relative py-12 sm:py-24 bg-cyber-dark min-h-screen"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
         >
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto">
-              <div className="text-center mb-12">
-                <GlitchText element="h2" className="text-3xl sm:text-4xl font-bold mb-3">
-                  THE <span className="text-cyber-yellow">MANIFESTO</span>
-                </GlitchText>
-                <div className="h-px w-24 mx-auto bg-cyber-yellow mb-3"></div>
+              <div className="text-center mb-8 sm:mb-12">
+                <RGBSplitText>
+                  <GlitchText element="h2" className="text-3xl sm:text-4xl font-bold mb-3">
+                    THE <span className="text-cyber-yellow">MANIFESTO</span>
+                  </GlitchText>
+                </RGBSplitText>
+                <div className="h-px w-24 mx-auto bg-gradient-to-r from-transparent via-cyber-yellow to-transparent mb-3"></div>
               </div>
 
-              <div className="font-mono bg-cyber-black/60 p-6 border border-cyber-yellow/20 relative">
+              {/* Skip Animation Button (only shown if animation is not complete) */}
+              <AnimatePresence>
+                {!isTypingComplete && (
+                  <motion.div 
+                    className="flex justify-center mb-6"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <Button
+                      onClick={showAllContent}
+                      className="bg-cyber-black/60 text-cyber-yellow border border-cyber-yellow/40 hover:bg-cyber-yellow/10 text-sm"
+                      size="sm"
+                    >
+                      Skip Animation
+                    </Button>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              <div className="font-mono bg-cyber-black/60 p-4 sm:p-6 border border-cyber-yellow/20 relative shadow-lg shadow-cyber-yellow/5">
+                {/* Terminal decorations */}
                 <div className="absolute top-0 left-0 w-full bg-gradient-to-r from-cyber-yellow/10 via-cyber-yellow/20 to-cyber-yellow/10 h-px"></div>
                 <div className="absolute bottom-0 left-0 w-full bg-gradient-to-r from-cyber-yellow/10 via-cyber-yellow/20 to-cyber-yellow/10 h-px"></div>
 
@@ -164,20 +245,33 @@ export default function Manifesto() {
                 </div>
 
                 <div className="terminal-text">
-                  <p className="mb-6 text-white/80 overflow-hidden whitespace-nowrap border-r-4 border-cyber-yellow animate-typing animate-blink">
+                  <p className="mb-4 text-white/80 overflow-hidden whitespace-nowrap border-r-4 border-cyber-yellow animate-typing animate-blink">
                     <span className="text-cyber-yellow">$</span> ./initialize_manifesto
                   </p>
 
-                  <div ref={manifestoRef} className="space-y-1 max-h-[60vh] overflow-y-auto">
+                  <div 
+                    ref={manifestoRef} 
+                    className="space-y-1 max-h-[50vh] sm:max-h-[60vh] overflow-y-auto pr-2 hide-scrollbar"
+                    style={{ 
+                      scrollBehavior: skipAnimation ? 'auto' : 'smooth'
+                    }}
+                  >
+                    {/* Render each line of the manifesto */}
                     {manifestoContent.map((content, index) => renderLine(content, index))}
                     
-                    {visibleLines.length === manifestoContent.length && (
-                      <p className="text-white/90 animate-blink">
+                    {/* Show command prompt after all lines are visible */}
+                    {isTypingComplete && (
+                      <p className="text-white/90 animate-blink pt-2">
                         <span className="text-cyber-yellow">$</span> _
                       </p>
                     )}
                   </div>
                 </div>
+              </div>
+              
+              {/* Instructions for mobile */}
+              <div className="text-center mt-6 text-white/50 text-xs font-mono">
+                <p>Press Space or Enter to skip animation | <a href="https://x.com/i/communities/1920969888081862674" target="_blank" rel="noopener noreferrer" className="text-cyber-yellow hover:underline">Join X Community</a></p>
               </div>
             </div>
           </div>
