@@ -40,7 +40,7 @@ export default function Navbar() {
             <div className="w-3 h-3 bg-cyber-cyan rounded-full group-hover:bg-cyber-magenta transition-colors duration-300"></div>
           </div>
           <RGBSplitText element="span" className="text-xl font-bold tracking-wider">
-            <GlitchText>ATTENTION</GlitchText>
+            <GlitchText element="span" className="animate-neon">ATTENTION</GlitchText>
           </RGBSplitText>
         </Link>
         

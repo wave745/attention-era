@@ -30,7 +30,7 @@ export default function HeroSection() {
           transition={{ delay: 0.2, duration: 0.8 }}
         >
           <RGBSplitText>
-            <GlitchText element="span" intensity="high">
+            <GlitchText element="span" intensity="high" className="animate-neon animate-glitch-3">
               ATTENTION ERA
             </GlitchText>
           </RGBSplitText>
@@ -49,8 +49,8 @@ export default function HeroSection() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.7, duration: 0.8 }}
         >
-          <GlitchText>
-            You are not the user. <span className="text-cyber-magenta">You are the used.</span>
+          <GlitchText intensity="medium" className="animate-glitch-2">
+            You are not the user. <span className="text-cyber-magenta animate-neon">You are the used.</span>
           </GlitchText>
         </motion.p>
         
