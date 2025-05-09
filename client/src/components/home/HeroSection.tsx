@@ -30,7 +30,7 @@ export default function HeroSection() {
           transition={{ delay: 0.2, duration: 0.8 }}
         >
           <RGBSplitText>
-            <GlitchText element="span" intensity="high" className="animate-neon animate-glitch-3">
+            <GlitchText element="span" intensity="high" className="animate-neon animate-glitch-3" rgb={true}>
               ATTENTION ERA
             </GlitchText>
           </RGBSplitText>

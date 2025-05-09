@@ -26,14 +26,16 @@ function Router() {
 }
 
 function App() {
-  const { isReducedMotion } = useReducedMotion();
+  // Temporarily force reduced motion off for demonstration
+  const { isReducedMotion: _isReducedMotion } = useReducedMotion();
+  const isReducedMotion = false;
 
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />
         <div className={`app-container ${isReducedMotion ? "reduced-motion" : ""}`}>
-          {!isReducedMotion && <Cursor />}
+          <Cursor />
           <Navbar />
           <main>
             <Router />

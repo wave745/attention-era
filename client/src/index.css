@@ -325,7 +325,8 @@
   transition: transform 0.1s ease !important;
 }
 
-/* Reduced motion */
+/* Reduced motion - disabled temporarily for demonstration */
+/* 
 .reduced-motion * {
   animation: none !important;
   transition: none !important;
@@ -343,6 +344,7 @@
 .reduced-motion .rgb-split {
   text-shadow: none !important;
 }
+*/
 
 /* Terminal */
 .terminal-container {

@@ -23,9 +23,9 @@ export function GlitchText({
   // Periodically trigger glitch effect
   useEffect(() => {
     const intervalTime = {
-      low: { min: 5000, max: 10000 },
-      medium: { min: 3000, max: 7000 },
-      high: { min: 1000, max: 3000 },
+      low: { min: 3000, max: 7000 },
+      medium: { min: 1500, max: 4000 },
+      high: { min: 800, max: 2000 },
     }[intensity];
 
     const getRandomInterval = () => 
@@ -36,11 +36,11 @@ export function GlitchText({
       
       setTimeout(() => {
         setIsGlitching(false);
-      }, Math.random() * 500 + 200); // Glitch duration varies between 200-700ms
+      }, Math.random() * 600 + 300); // Glitch duration varies between 300-900ms
     };
 
     // Initial glitch with delay
-    const initialTimeout = setTimeout(triggerGlitch, Math.random() * 1000);
+    const initialTimeout = setTimeout(triggerGlitch, Math.random() * 500);
     
     // Set up interval for periodic glitching
     let interval: NodeJS.Timeout;
@@ -48,6 +48,10 @@ export function GlitchText({
     const scheduleNextGlitch = () => {
       interval = setTimeout(() => {
         triggerGlitch();
+        // Sometimes do a rapid double glitch
+        if (Math.random() > 0.7) {
+          setTimeout(triggerGlitch, 200);
+        }
         scheduleNextGlitch();
       }, getRandomInterval());
     };
