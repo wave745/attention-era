@@ -9,6 +9,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
+import { RGBSplitText } from "@/components/ui/rgb-split";
 
 const formSchema = z.object({
   codename: z.string().min(2, { message: "Codename must be at least 2 characters" }),
@@ -65,52 +66,50 @@ export default function ContactSection() {
     }
   };
 
-  const contactChannels = [
-    {
-      icon: "fa-brands fa-x-twitter",
-      color: "text-white",
-      borderColor: "border-cyber-dark/60",
-      title: "X.COM",
-      link: "https://x.com/i/communities/1920969888081862674",
-      handle: "@attention_era",
-      linkColor: "text-white hover:text-cyber-cyan",
-    },
-  ];
-
   return (
     <section 
       id="contact" 
       ref={sectionRef}
       className="relative py-24 bg-cyber-black overflow-hidden"
     >
+      {/* Background elements */}
       <div className="absolute inset-0 opacity-20 pointer-events-none">
         <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-cyber-cyan/5 rounded-full blur-3xl"></div>
         <div className="absolute top-0 left-0 w-1/2 h-1/2 bg-cyber-magenta/5 rounded-full blur-3xl"></div>
+        
+        {/* Circuit board pattern */}
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MCIgaGVpZ2h0PSI1MCIgdmlld0JveD0iMCAwIDUwIDUwIj4KICA8cGF0aCBkPSJNMSAxaDQ4djQ4SDFWMXoiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgwLCAyNTUsIDI1NSwgMC4wMykiIHN0cm9rZS13aWR0aD0iMC41Ii8+CiAgPHBhdGggZD0iTTEwIDFWMTBNMjAgMVYxME0zMCAxVjEwTTQwIDFWMTBNMSAxMEgxME0xIDIwSDEwTTEgMzBIMTBNMSA0MEgxME0xMCAxMFYyMEgzMFYxME00MCAxMHYxMGgxMFYxME0xMCAxMEgyME0zMCAxMEg0ME0xMCAyMEgxTTEwIDIwVjMwTTEwIDMwdjEwTTEwIDQwdjlNMTAgNDBIMU0xMCAzMEgxTTEwIDMwSDIwTTEwIDQwSDIwIiBmaWxsPSJub25lIiBzdHJva2U9InJnYmEoMCwgMjU1LCAyNTUsIDAuMDMpIiBzdHJva2Utd2lkdGg9IjAuNSIvPgo8L3N2Zz4=')]
+          opacity-20"></div>
       </div>
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-xl mx-auto">
+          {/* Section Header */}
           <motion.div 
             className="text-center mb-16"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
           >
-            <GlitchText element="h2" className="text-3xl sm:text-4xl font-bold mb-3">
-              JOIN THE <span className="text-cyber-green">RESISTANCE</span>
-            </GlitchText>
-            <div className="h-px w-24 mx-auto bg-cyber-green mb-3"></div>
-            <p className="text-white/70 font-sans">Connect with us through secure channels. The corporations are always watching.</p>
+            <RGBSplitText>
+              <GlitchText element="h2" className="text-3xl sm:text-4xl font-bold mb-3">
+                JOIN THE <span className="text-cyber-green">RESISTANCE</span>
+              </GlitchText>
+            </RGBSplitText>
+            <div className="h-px w-24 mx-auto bg-gradient-to-r from-transparent via-cyber-green to-transparent mb-3"></div>
+            <p className="text-white/70 font-sans">Connect with us through our secure transmission channel.</p>
           </motion.div>
           
+          {/* Contact Form */}
           <motion.div 
-            className="grid grid-cols-1 md:grid-cols-2 gap-12"
             variants={containerVariants}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
+            className="bg-cyber-dark/60 p-6 sm:p-8 border border-cyber-dark rounded-sm backdrop-blur-sm"
           >
-            <motion.div variants={itemVariants} className="bg-cyber-dark/60 p-6 border border-cyber-dark rounded-sm">
-              <GlitchText element="h3" className="text-xl font-bold mb-6">
+            <motion.div variants={itemVariants}>
+              <GlitchText element="h3" className="text-xl font-bold mb-6 flex items-center">
+                <span className="w-3 h-3 bg-cyber-green rounded-full animate-pulse mr-3"></span>
                 SECURE TRANSMISSION
               </GlitchText>
               
@@ -121,7 +120,10 @@ export default function ContactSection() {
                     name="codename"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-sm font-medium text-white/70">CODE NAME</FormLabel>
+                        <FormLabel className="text-sm font-medium text-white/70 flex items-center">
+                          <span className="text-cyber-green mr-2">&gt;</span>
+                          CODE NAME
+                        </FormLabel>
                         <FormControl>
                           <Input
                             {...field}
@@ -129,7 +131,7 @@ export default function ContactSection() {
                             placeholder="Your alias"
                           />
                         </FormControl>
-                        <FormMessage />
+                        <FormMessage className="text-cyber-red text-xs" />
                       </FormItem>
                     )}
                   />
@@ -139,16 +141,19 @@ export default function ContactSection() {
                     name="email"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-sm font-medium text-white/70">ENCRYPTED CHANNEL</FormLabel>
+                        <FormLabel className="text-sm font-medium text-white/70 flex items-center">
+                          <span className="text-cyber-green mr-2">&gt;</span>
+                          ENCRYPTED CHANNEL
+                        </FormLabel>
                         <FormControl>
                           <Input
                             {...field}
                             type="email"
                             className="bg-cyber-black/60 border border-cyber-dark/70 focus:border-cyber-green text-white px-4 py-3 rounded-sm focus:outline-none"
-                            placeholder="Secure email"
+                            placeholder="Secure email address"
                           />
                         </FormControl>
-                        <FormMessage />
+                        <FormMessage className="text-cyber-red text-xs" />
                       </FormItem>
                     )}
                   />
@@ -158,83 +163,52 @@ export default function ContactSection() {
                     name="message"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-sm font-medium text-white/70">MESSAGE</FormLabel>
+                        <FormLabel className="text-sm font-medium text-white/70 flex items-center">
+                          <span className="text-cyber-green mr-2">&gt;</span>
+                          MESSAGE
+                        </FormLabel>
                         <FormControl>
                           <Textarea
                             {...field}
                             rows={4}
-                            className="bg-cyber-black/60 border border-cyber-dark/70 focus:border-cyber-green text-white px-4 py-3 rounded-sm focus:outline-none"
+                            className="bg-cyber-black/60 border border-cyber-dark/70 focus:border-cyber-green text-white px-4 py-3 rounded-sm focus:outline-none font-mono"
                             placeholder="Your message (end-to-end encrypted)"
                           />
                         </FormControl>
-                        <FormMessage />
+                        <FormMessage className="text-cyber-red text-xs" />
                       </FormItem>
                     )}
                   />
                   
-                  <Button
-                    type="submit"
-                    className="w-full bg-cyber-green/20 hover:bg-cyber-green/30 border border-cyber-green text-cyber-green font-medium py-6 rounded-sm transition-colors duration-300"
-                  >
-                    <GlitchText>TRANSMIT</GlitchText>
-                  </Button>
+                  <div className="pt-4">
+                    <Button
+                      type="submit"
+                      className="w-full bg-cyber-green/20 hover:bg-cyber-green/30 border border-cyber-green text-cyber-green font-medium py-6 rounded-sm transition-colors duration-300 relative overflow-hidden group"
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-cyber-green/10 to-transparent opacity-0 group-hover:opacity-100 translate-x-full group-hover:translate-x-0 transition-all duration-1000"></div>
+                      <GlitchText>TRANSMIT</GlitchText>
+                    </Button>
+                  </div>
+                  
+                  <div className="text-xs text-white/40 font-mono pt-4 border-t border-cyber-dark/30">
+                    <p className="mb-1 flex items-start">
+                      <span className="text-cyber-red mr-2 mt-0.5">[!]</span>
+                      Your message will be encrypted before transmission. No data is stored on corporate servers.
+                    </p>
+                  </div>
                 </form>
               </Form>
             </motion.div>
-            
-            <motion.div variants={itemVariants} className="bg-cyber-dark/60 p-6 border border-cyber-dark rounded-sm flex flex-col">
-              <GlitchText element="h3" className="text-xl font-bold mb-6">
-                RESISTANCE CHANNELS
-              </GlitchText>
-              
-              <div className="mb-8 p-4 border border-cyber-dark/70 bg-cyber-black/60 rounded-sm">
-                {contactChannels.map((channel, index) => (
-                  <motion.div 
-                    key={index}
-                    className="mb-3"
-                    variants={itemVariants}
-                  >
-                    <div className="flex items-center mb-2">
-                      <div className={`w-9 h-9 rounded-sm bg-cyber-dark/80 flex items-center justify-center mr-3 border ${channel.borderColor}`}>
-                        <i className={`fab ${channel.icon} ${channel.color} text-lg`}></i>
-                      </div>
-                      <div>
-                        <h4 className="text-base font-mono font-bold tracking-wider">{channel.title}</h4>
-                        <a 
-                          href={channel.link} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className={`${channel.linkColor} text-sm font-mono transition-colors`}
-                        >
-                          {channel.handle}
-                        </a>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-
-                <div className="mt-6 pt-6 border-t border-cyber-dark/60">
-                  <div className="font-mono text-sm text-white/80">
-                    <p className="mb-2"><span className="text-cyber-red">&gt; WARNING:</span></p>
-                    <p className="leading-relaxed">
-                      Standard communication channels are monitored. Only use encrypted methods. Trust no platform fully. The attention harvesters are always watching.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="mt-auto space-y-4">
-                <div className="flex items-center space-x-2">
-                  <div className="w-3 h-3 bg-cyber-cyan rounded-full animate-pulse"></div>
-                  <span className="text-xs font-mono text-white/70">SECURE CONNECTION ESTABLISHED</span>
-                </div>
-                
-                <div className="bg-cyber-black/40 p-4 border-l-4 border-cyber-yellow font-mono text-xs text-white/70">
-                  <p className="mb-1"><span className="text-cyber-yellow">[INFO]</span> JOIN THE RESISTANCE:</p>
-                  <p>Click the X.COM link above to join our community. Help us spread awareness about the attention economy and surveillance capitalism.</p>
-                </div>
-              </div>
-            </motion.div>
+          </motion.div>
+          
+          {/* Info text */}
+          <motion.div 
+            className="mt-8 text-center text-white/50 text-xs font-mono"
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ delay: 0.6, duration: 0.8 }}
+          >
+            <p>Visit our <a href="https://x.com/i/communities/1920969888081862674" target="_blank" rel="noopener noreferrer" className="text-cyber-green hover:text-cyber-green/80 transition-colors underline underline-offset-4">X Community</a> to connect with like-minded individuals</p>
           </motion.div>
         </div>
       </div>
