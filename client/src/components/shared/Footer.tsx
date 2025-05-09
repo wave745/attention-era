@@ -41,17 +41,8 @@ export default function Footer() {
           </div>
           
           <div className="flex space-x-6 text-white/50 mb-6 md:mb-0">
-            <a href="https://twitter.com" aria-label="Twitter" className="hover:text-cyber-cyan transition-colors">
-              <i className="fab fa-twitter"></i>
-            </a>
-            <a href="https://github.com" aria-label="GitHub" className="hover:text-cyber-cyan transition-colors">
-              <i className="fab fa-github"></i>
-            </a>
-            <a href="https://telegram.org" aria-label="Telegram" className="hover:text-cyber-cyan transition-colors">
-              <i className="fab fa-telegram-plane"></i>
-            </a>
-            <a href="https://discord.com" aria-label="Discord" className="hover:text-cyber-cyan transition-colors">
-              <i className="fab fa-discord"></i>
+            <a href="https://x.com" aria-label="X.com" className="hover:text-cyber-cyan transition-colors">
+              <i className="fab fa-brands fa-x-twitter"></i>
             </a>
           </div>
           

@@ -67,31 +67,13 @@ export default function ContactSection() {
 
   const contactChannels = [
     {
-      icon: "fa-telegram-plane",
-      color: "text-cyber-cyan",
+      icon: "fa-brands fa-x-twitter",
+      color: "text-white",
       borderColor: "border-cyber-dark/60",
-      title: "SECURE TELEGRAM",
+      title: "X.COM",
       link: "#",
-      handle: "@attention_resistance",
-      linkColor: "text-cyber-cyan hover:text-cyber-cyan/70",
-    },
-    {
-      icon: "fa-discord",
-      color: "text-cyber-magenta",
-      borderColor: "border-cyber-dark/60",
-      title: "DISCORD SERVER",
-      link: "#",
-      handle: "discord.gg/attention-era",
-      linkColor: "text-cyber-magenta hover:text-cyber-magenta/70",
-    },
-    {
-      icon: "fa-keybase",
-      color: "text-cyber-yellow",
-      borderColor: "border-cyber-dark/60",
-      title: "KEYBASE",
-      link: "#",
-      handle: "keybase.io/attention_breach",
-      linkColor: "text-cyber-yellow hover:text-cyber-yellow/70",
+      handle: "@attention_era",
+      linkColor: "text-white hover:text-white/70",
     },
   ];
 
