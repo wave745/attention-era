@@ -304,17 +304,25 @@
 
 /* Glitch storm mode */
 .glitch-storm .glitch-text {
-  animation: glitch1 0.2s infinite linear alternate-reverse !important;
+  animation: glitch1 0.15s infinite linear alternate-reverse !important;
+  text-shadow: 
+    -3px 0 rgba(255, 0, 102, 0.8),
+    3px 0 rgba(0, 255, 255, 0.8) !important;
 }
 
 .glitch-storm img,
 .glitch-storm .card {
-  animation: glitch2 0.2s infinite linear alternate-reverse !important;
+  animation: glitch2 0.15s infinite linear alternate-reverse !important;
+  filter: hue-rotate(45deg) !important;
 }
 
 .glitch-storm .scanlines::before {
-  opacity: 0.8;
-  animation: scanline 2s linear infinite !important;
+  opacity: 0.9;
+  animation: scanline 1s linear infinite !important;
+}
+
+.glitch-storm * {
+  transition: transform 0.1s ease !important;
 }
 
 /* Reduced motion */
@@ -373,7 +381,7 @@
   height: 100%;
   pointer-events: none;
   z-index: 40;
-  opacity: 0.1;
+  opacity: 0.2;
 }
 
 .scanlines-overlay::before {
@@ -386,10 +394,10 @@
   background: repeating-linear-gradient(
     to bottom,
     transparent 0%,
-    rgba(255, 255, 255, 0.05) 0.5%,
-    transparent 1%
+    rgba(255, 255, 255, 0.08) 0.3%,
+    transparent 0.6%
   );
-  animation: scanline 8s linear infinite;
+  animation: scanline 5s linear infinite;
 }
 
 /* Hover glitch effects */
