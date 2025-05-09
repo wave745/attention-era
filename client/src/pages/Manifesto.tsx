@@ -35,9 +35,31 @@ export default function Manifesto() {
   }, [incrementScore]);
 
   const manifestoContent = [
+    {
+      text: "This is not the future. This is now. And your mind is the battlefield.",
+      color: "text-cyber-red",
+    },
     "The Attention Era is upon us. Every second of your mental focus has become a commodity.",
     "Your consciousness is being parceled, packaged, and sold to the highest bidder.",
     "This is not paranoia. This is not conspiracy. This is the business model of the digital age.",
+    {
+      text: "// SYSTEM BREACH //",
+      color: "text-cyber-yellow",
+    },
+    {
+      type: "symbol_list",
+      items: [
+        { symbol: "🧠", text: "Your attention is finite. It is your most valuable resource." },
+        { symbol: "🛰️", text: "Your feed is a weapon—engineered to keep you scrolling." },
+        { symbol: "🕳️", text: "You are being shaped by shadows you can't see." },
+      ],
+      color: "text-white/90",
+    },
+    {
+      text: "Big Tech doesn't want you free. It wants you addicted.",
+      color: "text-cyber-red",
+    },
+    "Your dopamine is being mined like oil. The algorithm is not your friend—it is your dealer.",
     {
       text: "We declare the following truths to be self-evident:",
       color: "text-cyber-yellow",
@@ -45,15 +67,14 @@ export default function Manifesto() {
     {
       type: "list",
       items: [
-        "Your attention is finite. It is your most valuable resource.",
-        "The platforms we use are not designed to serve us; they are designed to capture and monetize our focus.",
+        "The platforms we use are designed to extract, not serve.",
         "Psychological manipulation at scale has become the default business strategy.",
         "The capacity for independent thought is endangered by algorithmic curation.",
         "Privacy is not a luxury—it is a necessity for mental autonomy.",
       ],
     },
     {
-      text: "What we propose:",
+      text: "Our mission:",
       color: "text-cyber-magenta",
     },
     {
@@ -71,8 +92,24 @@ export default function Manifesto() {
     },
     "You are not the user. You are the used. But you don't have to be.",
     {
-      text: "Join us. Reclaim your mind. The revolution will not be monetized.",
+      text: "⚔️ This is your call to arms.",
       color: "text-cyber-green",
+    },
+    {
+      text: "👁️ Reclaim your attention. Reclaim your identity.",
+      color: "text-cyber-green",
+    },
+    {
+      text: "🧭 The revolution begins with where you choose to look.",
+      color: "text-cyber-green",
+    },
+    {
+      text: "We are not content. We are consciousness.",
+      color: "text-cyber-yellow",
+    },
+    {
+      text: "You were never meant to be scrolled.",
+      color: "text-cyber-magenta",
     },
   ];
 
@@ -174,6 +211,20 @@ export default function Manifesto() {
             </li>
           ))}
         </ul>
+      );
+    } else if (content.type === "symbol_list") {
+      return (
+        <div 
+          key={index} 
+          className={`space-y-4 my-6 ${isVisible ? "opacity-100" : "opacity-0"} transition-opacity duration-300`}
+        >
+          {content.items.map((item: any, i: number) => (
+            <div key={i} className={`flex items-start ${content.color || 'text-white/90'}`}>
+              <span className="text-2xl mr-3 flex-shrink-0">{item.symbol}</span>
+              <p className="mt-1">{item.text}</p>
+            </div>
+          ))}
+        </div>
       );
     } else {
       return (
