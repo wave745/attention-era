@@ -159,7 +159,7 @@ export default function Manifesto() {
           clearInterval(lineDisplayInterval);
           setIsTypingComplete(true);
         }
-      }, 500); // Faster typing speed (was 2000ms)
+      }, 800); // Slightly slower typing speed for better reading pace
     };
 
     // Start with a shorter delay
@@ -262,26 +262,7 @@ export default function Manifesto() {
                 <div className="h-px w-24 mx-auto bg-gradient-to-r from-transparent via-cyber-yellow to-transparent mb-3"></div>
               </div>
 
-              {/* Skip Animation Button (only shown if animation is not complete) */}
-              <AnimatePresence>
-                {!isTypingComplete && (
-                  <motion.div 
-                    className="flex justify-center mb-6"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <Button
-                      onClick={showAllContent}
-                      className="bg-cyber-black/60 text-cyber-yellow border border-cyber-yellow/40 hover:bg-cyber-yellow/10 text-sm"
-                      size="sm"
-                    >
-                      Skip Animation
-                    </Button>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              {/* No Skip Animation Button as requested */}
 
               <div className="font-mono bg-cyber-black/60 p-4 sm:p-6 border border-cyber-yellow/20 relative shadow-lg shadow-cyber-yellow/5">
                 {/* Terminal decorations */}
@@ -320,9 +301,9 @@ export default function Manifesto() {
                 </div>
               </div>
               
-              {/* Instructions for mobile */}
+              {/* X Community Link */}
               <div className="text-center mt-6 text-white/50 text-xs font-mono">
-                <p>Press Space or Enter to skip animation | <a href="https://x.com/i/communities/1920969888081862674" target="_blank" rel="noopener noreferrer" className="text-cyber-yellow hover:underline">Join X Community</a></p>
+                <p><a href="https://x.com/i/communities/1920969888081862674" target="_blank" rel="noopener noreferrer" className="text-cyber-yellow hover:underline">Join X Community</a></p>
               </div>
             </div>
           </div>
