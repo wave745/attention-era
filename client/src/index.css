@@ -217,31 +217,31 @@
 }
 
 .animate-glitch-1 {
-  animation: glitch1 2.5s infinite linear alternate-reverse;
+  animation: glitch1 1.5s infinite linear alternate-reverse !important;
 }
 
 .animate-glitch-2 {
-  animation: glitch2 1.8s infinite linear alternate-reverse;
+  animation: glitch2 1.2s infinite linear alternate-reverse !important;
 }
 
 .animate-glitch-3 {
-  animation: glitch3 3s infinite linear alternate-reverse;
+  animation: glitch3 2s infinite linear alternate-reverse !important;
 }
 
 .animate-neon {
-  animation: neonFlicker 2s infinite;
+  animation: neonFlicker 1.5s infinite !important;
 }
 
 .animate-scanline {
-  animation: scanline 8s linear infinite;
+  animation: scanline 5s linear infinite !important;
 }
 
 .animate-noise {
-  animation: noise 0.2s infinite;
+  animation: noise 0.2s infinite !important;
 }
 
 .animate-blink {
-  animation: blink 1.5s infinite;
+  animation: blink 1s infinite !important;
 }
 
 .animate-typing {
@@ -399,7 +399,7 @@
     rgba(255, 255, 255, 0.08) 0.3%,
     transparent 0.6%
   );
-  animation: scanline 5s linear infinite;
+  animation: scanline 2s linear infinite !important;
 }
 
 /* Hover glitch effects */
@@ -448,12 +448,14 @@
   position: fixed;
   pointer-events: none;
   z-index: 9999;
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   transform: translate(-50%, -50%);
   mix-blend-mode: screen;
   transition: background-color 0.3s ease;
+  border: 2px solid rgba(0, 255, 255, 0.6);
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
 }
 
 .cursor-trail {
@@ -461,25 +463,27 @@
   pointer-events: none;
   top: 0;
   left: 0;
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  background-color: hsl(191, 100%, 50%, 0.5);
+  background-color: hsl(191, 100%, 60%, 0.7);
   z-index: 9998;
   mix-blend-mode: screen;
-  transition: transform 0.05s ease, opacity 0.7s ease;
-  opacity: 0.4;
+  transition: transform 0.05s ease, opacity 0.4s ease;
+  opacity: 0.6;
+  box-shadow: 0 0 6px rgba(0, 255, 255, 0.8);
 }
 
 .cursor-glyph {
   position: fixed;
   pointer-events: none;
   z-index: 9997;
-  font-size: 24px;
-  color: hsl(191, 100%, 50%, 0.6);
+  font-size: 28px;
+  color: hsl(191, 100%, 70%, 0.7);
   mix-blend-mode: screen;
   transform: translate(-50%, -50%) rotate(0deg);
-  animation: rotate-glyph 8s linear infinite;
+  animation: rotate-glyph 8s linear infinite !important;
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.6);
 }
 
 @keyframes rotate-glyph {
