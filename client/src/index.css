@@ -639,6 +639,115 @@ html, body {
   }
 }
 
+/* Corner clip for cards */
+.clip-corner {
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+
+/* Card hover effects */
+.card-hover-effect {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  transform-style: preserve-3d;
+  will-change: transform, box-shadow;
+}
+
+.card-hover-effect:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.card-hover-effect::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.05) 40%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.05) 60%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.card-hover-effect:hover::after {
+  opacity: 1;
+  animation: card-shine 2s forwards;
+}
+
+@keyframes card-shine {
+  0% {
+    transform: translateX(-100%) translateY(100%);
+  }
+  20%, 100% {
+    transform: translateX(100%) translateY(-100%);
+  }
+}
+
+/* Navbar scroll effect */
+.nav-scrolled {
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-scrolled::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  bottom: -1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 255, 255, 0.5),
+    transparent
+  );
+  width: 200%;
+  animation: nav-border-slide 2s linear infinite;
+}
+
+@keyframes nav-border-slide {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+/* Scanline animation for mobile menu */
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+    background: rgba(0, 255, 255, 0.1);
+    height: 5px;
+  }
+  50% {
+    background: rgba(0, 255, 255, 0.3);
+    height: 2px;
+  }
+  100% {
+    transform: translateY(100%);
+    background: rgba(0, 255, 255, 0.1);
+    height: 5px;
+  }
+}
+
+.animate-scanline {
+  animation: scanline 1.5s ease-in-out infinite;
+}
+
+/* Gradient Radial for neon effects */
+.bg-gradient-radial {
+  background-image: radial-gradient(var(--tw-gradient-stops));
+}
+
 /* Tablet adjustments */
 @media (min-width: 641px) and (max-width: 1024px) {
   .noise-overlay {
@@ -651,4 +760,24 @@ html, body {
   .animate-glitch-3 {
     animation-duration: 1.8s !important;
   }
+  
+  /* Adjust card layouts */
+  .card-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+}
+
+/* Custom scrollbar for code blocks */
+pre::-webkit-scrollbar {
+  height: 8px;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+pre::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 255, 255, 0.3);
+  border-radius: 4px;
+}
+
+pre::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 255, 255, 0.5);
 }

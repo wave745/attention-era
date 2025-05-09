@@ -2,23 +2,62 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-    <title>ATTENTION ERA | You are not the user. You are the used.</title>
-    <meta name="description" content="You are not the user. You are the used. Attention is the new control." />
-    <meta property="og:title" content="ATTENTION ERA" />
-    <meta property="og:description" content="You are not the user. You are the used. Attention is the new control." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5" />
+    
+    <!-- Primary Meta Tags -->
+    <title>ATTENTION ERA | A Cyberpunk Digital Experience</title>
+    <meta name="title" content="ATTENTION ERA | A Cyberpunk Digital Experience" />
+    <meta name="description" content="Immerse yourself in ATTENTION ERA, a dark cyberpunk digital experience exploring the attention economy and surveillance. You are not the user. You are the used." />
+    <meta name="keywords" content="cyberpunk, attention economy, digital surveillance, web experience, glitch art, interactive art" />
+    <meta name="author" content="ATTENTION ERA" />
+    <meta name="theme-color" content="#0c0c10" />
+    
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="@assets/we212eawdsa.gif" />
-    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="og:url" content="https://attention-era.replit.app/" />
+    <meta property="og:title" content="ATTENTION ERA | A Cyberpunk Digital Experience" />
+    <meta property="og:description" content="Immerse yourself in ATTENTION ERA, a dark cyberpunk digital experience exploring the attention economy and surveillance. You are not the user. You are the used." />
+    <meta property="og:image" content="/attached_assets/we212eawdsa.gif" />
+    <meta property="og:site_name" content="ATTENTION ERA" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://attention-era.replit.app/" />
+    <meta property="twitter:title" content="ATTENTION ERA | A Cyberpunk Digital Experience" />
+    <meta property="twitter:description" content="Immerse yourself in ATTENTION ERA, a dark cyberpunk digital experience exploring the attention economy and surveillance. You are not the user. You are the used." />
+    <meta property="twitter:image" content="/attached_assets/we212eawdsa.gif" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iMTUuNSIgc3Ryb2tlPSIjMDBGRkZGIiBzdHJva2Utd2lkdGg9IjEiLz4KPGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iOCIgZmlsbD0iIzAwRkZGRiIgZmlsbC1vcGFjaXR5PSIwLjYiLz4KPC9zdmc+Cg==" />
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=Inter:wght@400;600;800&family=VT323&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=Inter:wght@300;400;600;800&family=VT323&display=swap" rel="stylesheet">
+    
+    <!-- Preload assets -->
+    <link rel="preload" as="image" href="/attached_assets/we212eawdsa.gif" />
+    
+    <!-- Reduce animations for users with reduced motion preference -->
+    <script>
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReducedMotion) {
+        document.documentElement.classList.add('reduced-motion');
+        console.warn('You have Reduced Motion enabled on your device. Animations may not appear as expected.');
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <div style="padding: 20px; text-align: center; font-family: 'IBM Plex Mono', monospace;">
+        <h1 style="color: #00FFFF;">ATTENTION ERA requires JavaScript</h1>
+        <p>Please enable JavaScript to experience this digital world.</p>
+      </div>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
-    <!-- This is a replit script which adds a banner on the top of the page when opened in development mode outside the replit environment -->
+    
+    <!-- Replit development banner -->
     <script type="text/javascript" src="https://replit.com/public/js/replit-dev-banner.js"></script>
   </body>
 </html>
