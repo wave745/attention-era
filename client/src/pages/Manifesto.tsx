@@ -186,15 +186,36 @@ export default function Manifesto() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isTypingComplete]);
 
-  // Render a line of the manifesto
+  // Render a line of the manifesto with glitch effects
   const renderLine = (content: any, index: number) => {
     const isVisible = visibleLines.includes(index);
+    
+    // Determine if this line should have a glitch effect
+    // Key lines get stronger glitch effects
+    const getGlitchClass = () => {
+      if (!isVisible) return '';
+      
+      // For highlighted text (colored text), use stronger glitch
+      if (typeof content !== 'string' && content.color) {
+        if (content.color.includes('cyber-red') || content.color.includes('cyber-magenta')) {
+          return 'text-glitch-strong';
+        }
+        if (content.color.includes('cyber-yellow')) {
+          return 'text-glitch-medium';
+        }
+        return 'text-glitch-light hover:text-glitch-medium';
+      }
+      
+      // For regular text, use subtle glitch on hover
+      return 'hover:text-glitch-light';
+    };
     
     if (typeof content === "string") {
       return (
         <p 
           key={index} 
-          className={`text-white/90 mb-4 ${isVisible ? "opacity-100" : "opacity-0"} transition-opacity duration-300`}
+          className={`text-white/90 mb-4 ${isVisible ? "opacity-100" : "opacity-0"} transition-opacity duration-300 ${getGlitchClass()}`}
+          data-text={content}
         >
           {content}
         </p>
@@ -206,7 +227,7 @@ export default function Manifesto() {
           className={`list-disc pl-6 space-y-2 mb-4 ${isVisible ? "opacity-100" : "opacity-0"} transition-opacity duration-300`}
         >
           {content.items.map((item: string, i: number) => (
-            <li key={i} className="text-white/90">
+            <li key={i} className={`text-white/90 ${getGlitchClass()}`} data-text={item}>
               {item}
             </li>
           ))}
@@ -220,17 +241,35 @@ export default function Manifesto() {
         >
           {content.items.map((item: any, i: number) => (
             <div key={i} className={`flex items-start ${content.color || 'text-white/90'}`}>
-              <span className="text-2xl mr-3 flex-shrink-0">{item.symbol}</span>
-              <p className="mt-1">{item.text}</p>
+              <span className="text-2xl mr-3 flex-shrink-0 text-glitch-light" data-text={item.symbol}>
+                {item.symbol}
+              </span>
+              <p className={`mt-1 ${getGlitchClass()}`} data-text={item.text}>
+                {item.text}
+              </p>
             </div>
           ))}
         </div>
       );
     } else {
+      // For important headings, wrap with GlitchText component
+      if (content.color && (content.color.includes('cyber-red') || content.color.includes('cyber-yellow'))) {
+        return (
+          <GlitchText 
+            key={index}
+            intensity="medium" 
+            className={`${content.color} mb-4 ${isVisible ? "opacity-100" : "opacity-0"} transition-opacity duration-300`}
+          >
+            {content.text}
+          </GlitchText>
+        );
+      }
+      
       return (
         <p 
           key={index} 
-          className={`${content.color} mb-4 ${isVisible ? "opacity-100" : "opacity-0"} transition-opacity duration-300`}
+          className={`${content.color} mb-4 ${isVisible ? "opacity-100" : "opacity-0"} transition-opacity duration-300 ${getGlitchClass()}`}
+          data-text={content.text}
         >
           {content.text}
         </p>
