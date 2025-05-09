@@ -577,15 +577,78 @@
   transition: all 0.3s ease;
 }
 
+/* Radial gradients */
+.bg-gradient-radial {
+  background-image: radial-gradient(var(--tw-gradient-stops));
+}
+
+/* Modern scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 255, 0.4);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 255, 255, 0.6);
+}
+
+/* Proper mobile height correction */
+html, body {
+  height: 100%;
+  height: 100dvh; /* Dynamic viewport height */
+  overscroll-behavior: none;
+}
+
 /* Mobile adjustments */
 @media (max-width: 640px) {
   .noise-overlay {
     background-size: 150px;
+    opacity: 0.2;
   }
   
   .cursor-eye,
   .cursor-trail,
   .cursor-glyph {
     display: none;
+  }
+  
+  .scanlines-overlay::before {
+    opacity: 0.5;
+  }
+  
+  /* Optimize animations for mobile */
+  .animate-glitch-1,
+  .animate-glitch-2,
+  .animate-glitch-3 {
+    animation-duration: 2s !important;
+  }
+  
+  /* Reduce intensity of certain effects on mobile */
+  .glitch-storm img,
+  .glitch-storm .card {
+    filter: none !important;
+  }
+}
+
+/* Tablet adjustments */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .noise-overlay {
+    opacity: 0.25;
+  }
+  
+  /* Medium-intensity effects for tablets */
+  .animate-glitch-1,
+  .animate-glitch-2,
+  .animate-glitch-3 {
+    animation-duration: 1.8s !important;
   }
 }
