@@ -48,7 +48,7 @@ export default function Footer() {
                 </div>
                 <RGBSplitText element="span" className="text-lg font-bold tracking-wider">
                   <GlitchText element="span" intensity="low">
-                    ATTENTION<span className="text-cyber-cyan">ERA</span>
+                    ATTENTION<span className="text-cyber-cyan">_ERA</span>
                   </GlitchText>
                 </RGBSplitText>
               </div>

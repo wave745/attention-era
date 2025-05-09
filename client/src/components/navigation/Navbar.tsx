@@ -116,9 +116,9 @@ export default function Navbar() {
               </GlitchText>
             </RGBSplitText>
             
-            <RGBSplitText element="span" className="text-xl font-bold tracking-wider block sm:hidden">
+            <RGBSplitText element="span" className="text-md sm:text-xl font-bold tracking-wider block sm:hidden">
               <GlitchText element="span" intensity={scrolled ? "medium" : "low"} className="animate-neon">
-                AE
+                ATTENTION
               </GlitchText>
             </RGBSplitText>
           </motion.div>
