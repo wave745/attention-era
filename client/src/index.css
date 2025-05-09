@@ -1,8 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=Inter:wght@400;600;800&family=VT323&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=Inter:wght@400;600;800&family=VT323&display=swap');
 
 :root {
   --background: 240 10% 3.9%;
@@ -145,6 +145,14 @@
   80% { transform: translate(3px, -3px); }
 }
 
+@keyframes glitch3 {
+  0%, 100% { transform: translate(0); clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+  20% { transform: translate(-2px, 0); clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 95%); }
+  40% { transform: translate(2px, 0); clip-path: polygon(0 0, 100% 5%, 100% 95%, 0 100%); }
+  60% { transform: translate(0, 2px); clip-path: polygon(5% 0, 95% 0, 100% 100%, 0 100%); }
+  80% { transform: translate(0, -2px); clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%); }
+}
+
 @keyframes scanline {
   0% { transform: translateY(0%); }
   100% { transform: translateY(100%); }
@@ -172,12 +180,21 @@
   75% { transform: translate(-5px, 5px); }
 }
 
+@keyframes rotateGlyph {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 .animate-glitch-1 {
   animation: glitch1 4s infinite linear alternate-reverse;
 }
 
 .animate-glitch-2 {
   animation: glitch2 3s infinite linear alternate-reverse;
+}
+
+.animate-glitch-3 {
+  animation: glitch3 5s infinite linear alternate-reverse;
 }
 
 .animate-scanline {
@@ -198,6 +215,10 @@
 
 .animate-eye-follow {
   animation: eyeFollow 3s ease-in-out infinite;
+}
+
+.animate-rotate {
+  animation: rotateGlyph 8s linear infinite;
 }
 
 /* Scanlines overlay */
@@ -335,9 +356,186 @@
   animation: scanline 8s linear infinite;
 }
 
+/* Hover glitch effects */
+.glitch-hover {
+  position: relative;
+  display: inline-block;
+  transition: all 0.2s ease;
+}
+
+.glitch-hover:hover {
+  text-shadow: 
+    -2px 0 rgba(255, 0, 102, 0.7),
+    2px 0 rgba(0, 255, 255, 0.7);
+  transform: translateY(-2px);
+}
+
+.glitch-hover:hover::before {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: rgba(255, 0, 102, 0.7);
+  clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+  transform: translateX(-2px);
+  animation: glitch-hover 0.4s infinite linear alternate-reverse;
+}
+
+.glitch-hover:hover::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: rgba(0, 255, 255, 0.7);
+  clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+  transform: translateX(2px);
+  animation: glitch-hover 0.4s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-hover {
+  0% { transform: translateX(-2px); }
+  100% { transform: translateX(2px); }
+}
+
+/* Enhanced cursor */
+.cursor-eye {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: screen;
+  transition: background-color 0.3s ease;
+}
+
+.cursor-trail {
+  position: fixed;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: hsl(191, 100%, 50%, 0.5);
+  z-index: 9998;
+  mix-blend-mode: screen;
+  transition: transform 0.05s ease, opacity 0.7s ease;
+  opacity: 0.4;
+}
+
+.cursor-glyph {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9997;
+  font-size: 24px;
+  color: hsl(191, 100%, 50%, 0.6);
+  mix-blend-mode: screen;
+  transform: translate(-50%, -50%) rotate(0deg);
+  animation: rotate-glyph 8s linear infinite;
+}
+
+@keyframes rotate-glyph {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Scroll-triggered animations */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-glitch {
+  position: relative;
+}
+
+.scroll-glitch.revealed {
+  animation: sudden-glitch 0.5s forwards;
+}
+
+@keyframes sudden-glitch {
+  0% { transform: translate(0); filter: none; }
+  10% { transform: translate(-10px, 5px); filter: hue-rotate(90deg); }
+  20% { transform: translate(10px, -5px); filter: hue-rotate(180deg); }
+  30% { transform: translate(-5px, -8px); filter: hue-rotate(270deg); }
+  40% { transform: translate(5px, 8px); filter: hue-rotate(0deg); }
+  50% { transform: translate(0); filter: none; }
+  100% { transform: translate(0); filter: none; }
+}
+
+/* Ambient glitch storm mode */
+.glitch-storm-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 0, 0, 0.2) 0%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+}
+
+.glitch-storm-overlay.active {
+  opacity: 1;
+}
+
+.glitch-storm-overlay::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 0.2%,
+    transparent 0.4%
+  );
+  animation: scanline 2s linear infinite;
+}
+
+.glitch-storm-overlay::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 600 600' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+  opacity: 0.3;
+}
+
+.key-highlight {
+  color: hsl(191, 100%, 50%);
+  text-shadow: 0 0 8px hsl(191, 100%, 50%, 0.8);
+  transition: all 0.3s ease;
+}
+
 /* Mobile adjustments */
 @media (max-width: 640px) {
   .noise-overlay {
     background-size: 150px;
+  }
+  
+  .cursor-eye,
+  .cursor-trail,
+  .cursor-glyph {
+    display: none;
   }
 }

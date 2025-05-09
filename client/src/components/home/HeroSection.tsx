@@ -17,8 +17,8 @@ export default function HeroSection() {
     >
       {/* Background image with cyberpunk cityscape */}
       <RGBSplitImage
-        src="https://images.unsplash.com/photo-1515630278258-407f66498911?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1920&h=1080"
-        alt="A cyberpunk digital cityscape with neon glitch effects"
+        src="/attached_assets/we212eawdsa.gif"
+        alt="A cyberpunk figure with VR headset and glitch effects"
         className="absolute inset-0 z-0 bg-cover bg-center opacity-40"
       />
       
