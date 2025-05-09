@@ -71,9 +71,9 @@ export default function ContactSection() {
       color: "text-white",
       borderColor: "border-cyber-dark/60",
       title: "X.COM",
-      link: "#",
+      link: "https://x.com/i/communities/1920969888081862674",
       handle: "@attention_era",
-      linkColor: "text-white hover:text-white/70",
+      linkColor: "text-white hover:text-cyber-cyan",
     },
   ];
 
@@ -187,30 +187,51 @@ export default function ContactSection() {
                 RESISTANCE CHANNELS
               </GlitchText>
               
-              <ul className="space-y-4 mb-8">
+              <div className="mb-8 p-4 border border-cyber-dark/70 bg-cyber-black/60 rounded-sm">
                 {contactChannels.map((channel, index) => (
-                  <motion.li 
+                  <motion.div 
                     key={index}
-                    className="flex items-center"
+                    className="mb-3"
                     variants={itemVariants}
                   >
-                    <div className={`w-10 h-10 rounded-sm bg-cyber-dark/80 flex items-center justify-center mr-4 border ${channel.borderColor}`}>
-                      <i className={`fab ${channel.icon} ${channel.color}`}></i>
+                    <div className="flex items-center mb-2">
+                      <div className={`w-9 h-9 rounded-sm bg-cyber-dark/80 flex items-center justify-center mr-3 border ${channel.borderColor}`}>
+                        <i className={`fab ${channel.icon} ${channel.color} text-lg`}></i>
+                      </div>
+                      <div>
+                        <h4 className="text-base font-mono font-bold tracking-wider">{channel.title}</h4>
+                        <a 
+                          href={channel.link} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className={`${channel.linkColor} text-sm font-mono transition-colors`}
+                        >
+                          {channel.handle}
+                        </a>
+                      </div>
                     </div>
-                    <div>
-                      <h4 className="text-sm font-bold">{channel.title}</h4>
-                      <a href={channel.link} className={`${channel.linkColor} text-sm transition-colors`}>
-                        {channel.handle}
-                      </a>
-                    </div>
-                  </motion.li>
+                  </motion.div>
                 ))}
-              </ul>
+
+                <div className="mt-6 pt-6 border-t border-cyber-dark/60">
+                  <div className="font-mono text-sm text-white/80">
+                    <p className="mb-2"><span className="text-cyber-red">&gt; WARNING:</span></p>
+                    <p className="leading-relaxed">
+                      Standard communication channels are monitored. Only use encrypted methods. Trust no platform fully. The attention harvesters are always watching.
+                    </p>
+                  </div>
+                </div>
+              </div>
               
-              <div className="mt-auto">
-                <div className="bg-cyber-black/40 p-4 border-l-4 border-cyber-red font-mono text-sm text-white/80">
-                  <p className="mb-2"><span className="text-cyber-red">&gt;</span> WARNING:</p>
-                  <p>Standard communication channels are monitored. Only use encrypted methods. Trust no platform fully. The attention harvesters are always watching.</p>
+              <div className="mt-auto space-y-4">
+                <div className="flex items-center space-x-2">
+                  <div className="w-3 h-3 bg-cyber-cyan rounded-full animate-pulse"></div>
+                  <span className="text-xs font-mono text-white/70">SECURE CONNECTION ESTABLISHED</span>
+                </div>
+                
+                <div className="bg-cyber-black/40 p-4 border-l-4 border-cyber-yellow font-mono text-xs text-white/70">
+                  <p className="mb-1"><span className="text-cyber-yellow">[INFO]</span> JOIN THE RESISTANCE:</p>
+                  <p>Click the X.COM link above to join our community. Help us spread awareness about the attention economy and surveillance capitalism.</p>
                 </div>
               </div>
             </motion.div>
