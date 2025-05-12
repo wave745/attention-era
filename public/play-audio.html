@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ATTENTION ERA - Sound Player</title>
+  <style>
+    body {
+      background: #0c0c10;
+      color: #00ffff;
+      font-family: 'Courier New', monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+    
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    
+    .audio-container {
+      background: rgba(0, 0, 0, 0.7);
+      border: 1px solid #00ffff;
+      border-radius: 4px;
+      padding: 20px;
+      text-align: center;
+      max-width: 600px;
+      width: 100%;
+    }
+    
+    audio {
+      margin: 20px 0;
+      width: 100%;
+    }
+    
+    button {
+      background: #000;
+      color: #00ffff;
+      border: 1px solid #00ffff;
+      padding: 10px 20px;
+      margin: 10px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    
+    button:hover {
+      background: #00ffff;
+      color: #000;
+    }
+    
+    .magenta {
+      color: #ff00ff;
+    }
+  </style>
+</head>
+<body>
+  <div class="audio-container">
+    <h1>ATTENTION<span class="magenta">_ERA</span> Sound Player</h1>
+    
+    <p>Click play to hear the background glitch soundtrack:</p>
+    
+    <audio controls autoplay loop id="background-audio">
+      <source src="/sounds/attention-era-glitch.mp3" type="audio/mpeg">
+      Your browser does not support audio.
+    </audio>
+    
+    <div>
+      <button id="playButton">PLAY</button>
+      <button id="muteButton">MUTE</button>
+    </div>
+    
+    <p>After clicking play, you can close this window and return to the main site.</p>
+  </div>
+  
+  <script>
+    window.onload = function() {
+      const audio = document.getElementById('background-audio');
+      const playButton = document.getElementById('playButton');
+      const muteButton = document.getElementById('muteButton');
+      
+      // Set initial volume
+      audio.volume = 0.2;
+      
+      // Play button
+      playButton.addEventListener('click', function() {
+        audio.play();
+      });
+      
+      // Mute button
+      muteButton.addEventListener('click', function() {
+        audio.muted = !audio.muted;
+        muteButton.textContent = audio.muted ? 'UNMUTE' : 'MUTE';
+      });
+      
+      // Try to autoplay
+      audio.play().catch(function(error) {
+        console.log('Autoplay prevented:', error);
+      });
+    };
+  </script>
+</body>
+</html>
