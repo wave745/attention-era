@@ -6,20 +6,18 @@ import { GlitchText } from "@/components/ui/glitch-text";
 import { RGBSplitText } from "@/components/ui/rgb-split";
 import { motionConfig } from "@/lib/motion-settings";
 
-// Import only the GIF from original memes
+// Import all meme images
 import memeGif from "@assets/we212eawdsa.gif";
-
-// New meme paths - using URLs directly for public folder images
-const newMeme1 = "/img/memes/photo_2025-05-12_12-25-14.jpg";
-const newMeme2 = "/img/memes/photo_2025-05-12_12-25-12.jpg";
-const newMeme3 = "/img/memes/photo_2025-05-12_12-25-11.jpg";
-const newMeme4 = "/img/memes/photo_2025-05-12_12-25-10.jpg";
-const newMeme5 = "/img/memes/photo_2025-05-12_12-25-08.jpg";
-const newMeme6 = "/img/memes/photo_2025-05-12_12-25-07.jpg";
-const newMeme7 = "/img/memes/photo_2025-05-12_12-25-05.jpg";
-const newMeme8 = "/img/memes/photo_2025-05-12_12-25-04.jpg";
-const newMeme9 = "/img/memes/photo_2025-05-12_12-25-02.jpg";
-const newMeme10 = "/img/memes/photo_2025-05-12_12-25-00.jpg";
+import newMeme1 from "@assets/photo_2025-05-12_12-25-14.jpg";
+import newMeme2 from "@assets/photo_2025-05-12_12-25-12.jpg";
+import newMeme3 from "@assets/photo_2025-05-12_12-25-11.jpg";
+import newMeme4 from "@assets/photo_2025-05-12_12-25-10.jpg";
+import newMeme5 from "@assets/photo_2025-05-12_12-25-08.jpg";
+import newMeme6 from "@assets/photo_2025-05-12_12-25-07.jpg";
+import newMeme7 from "@assets/photo_2025-05-12_12-25-05.jpg";
+import newMeme8 from "@assets/photo_2025-05-12_12-25-04.jpg";
+import newMeme9 from "@assets/photo_2025-05-12_12-25-02.jpg";
+import newMeme10 from "@assets/photo_2025-05-12_12-25-00.jpg";
 
 interface MemeItem {
   src: string;
