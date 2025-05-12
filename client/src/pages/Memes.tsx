@@ -6,11 +6,7 @@ import { GlitchText } from "@/components/ui/glitch-text";
 import { RGBSplitText } from "@/components/ui/rgb-split";
 import { motionConfig } from "@/lib/motion-settings";
 
-// Import original images
-import meme1 from "@assets/Screenshot_20250509_214943_Chrome.jpg";
-import meme2 from "@assets/image_1746830914986.png";
-import meme3 from "@assets/image_1746831213205.png";
-import meme4 from "@assets/image_1746832186179.png";
+// Import only the GIF from original memes
 import memeGif from "@assets/we212eawdsa.gif";
 
 // New meme paths - using URLs directly for public folder images
@@ -56,11 +52,7 @@ export default function Memes() {
 
   // List of meme images
   const memes: MemeItem[] = [
-    // Original memes
-    { src: meme1, alt: "Social Media Immersion" },
-    { src: meme2, alt: "Digital Consumption" },
-    { src: meme3, alt: "Attention Economy" },
-    { src: meme4, alt: "Distraction Cycle" },
+    // Kept GIF
     { src: memeGif, alt: "Attention Glitch GIF" },
     
     // New memes
