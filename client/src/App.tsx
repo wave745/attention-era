@@ -7,6 +7,7 @@ import { useReducedMotion } from "./hooks/use-reduced-motion";
 import { AnimatePresence } from "framer-motion";
 import { Cursor } from "@/components/ui/cursor";
 import { BackgroundSound } from "@/components/shared/BackgroundSound";
+import { AutoPlayTrigger } from "@/components/shared/AutoPlayTrigger";
 
 import Home from "@/pages/Home";
 import Manifesto from "@/pages/Manifesto";
@@ -39,6 +40,7 @@ function App() {
         <Toaster />
         <div className={`app-container ${isReducedMotion ? "reduced-motion" : ""}`}>
           <Cursor />
+          <AutoPlayTrigger />
           <BackgroundSound audioSrc="/sounds/zapsplat_science_fiction_glitch_angry_buzz_111722.mp3" initialVolume={0.1} />
           <Navbar />
           <main>
