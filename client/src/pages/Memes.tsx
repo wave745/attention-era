@@ -6,12 +6,24 @@ import { GlitchText } from "@/components/ui/glitch-text";
 import { RGBSplitText } from "@/components/ui/rgb-split";
 import { motionConfig } from "@/lib/motion-settings";
 
-// Import images
+// Import original images
 import meme1 from "@assets/Screenshot_20250509_214943_Chrome.jpg";
 import meme2 from "@assets/image_1746830914986.png";
 import meme3 from "@assets/image_1746831213205.png";
 import meme4 from "@assets/image_1746832186179.png";
 import memeGif from "@assets/we212eawdsa.gif";
+
+// New meme paths - using URLs directly for public folder images
+const newMeme1 = "/img/memes/photo_2025-05-12_12-25-14.jpg";
+const newMeme2 = "/img/memes/photo_2025-05-12_12-25-12.jpg";
+const newMeme3 = "/img/memes/photo_2025-05-12_12-25-11.jpg";
+const newMeme4 = "/img/memes/photo_2025-05-12_12-25-10.jpg";
+const newMeme5 = "/img/memes/photo_2025-05-12_12-25-08.jpg";
+const newMeme6 = "/img/memes/photo_2025-05-12_12-25-07.jpg";
+const newMeme7 = "/img/memes/photo_2025-05-12_12-25-05.jpg";
+const newMeme8 = "/img/memes/photo_2025-05-12_12-25-04.jpg";
+const newMeme9 = "/img/memes/photo_2025-05-12_12-25-02.jpg";
+const newMeme10 = "/img/memes/photo_2025-05-12_12-25-00.jpg";
 
 interface MemeItem {
   src: string;
@@ -44,11 +56,24 @@ export default function Memes() {
 
   // List of meme images
   const memes: MemeItem[] = [
-    { src: meme1, alt: "Attention Meme 1" },
-    { src: meme2, alt: "Attention Meme 2" },
-    { src: meme3, alt: "Attention Meme 3" },
-    { src: meme4, alt: "Attention Meme 4" },
-    { src: memeGif, alt: "Attention Meme GIF" }
+    // Original memes
+    { src: meme1, alt: "Social Media Immersion" },
+    { src: meme2, alt: "Digital Consumption" },
+    { src: meme3, alt: "Attention Economy" },
+    { src: meme4, alt: "Distraction Cycle" },
+    { src: memeGif, alt: "Attention Glitch GIF" },
+    
+    // New memes
+    { src: newMeme1, alt: "Social Media Trap" },
+    { src: newMeme2, alt: "Attention Theater" },
+    { src: newMeme3, alt: "Engage - Don't Be a Slave" },
+    { src: newMeme4, alt: "$ATTENTION Era Is Here" },
+    { src: newMeme5, alt: "You Are Not The User" },
+    { src: newMeme6, alt: "Digital Hypnosis" },
+    { src: newMeme7, alt: "Social Media Addiction" },
+    { src: newMeme8, alt: "Don't Be A Slave - Magenta" },
+    { src: newMeme9, alt: "Attention Algorithm" },
+    { src: newMeme10, alt: "Attention Era Is Upon Us" }
   ];
 
   // Function to open a meme in the modal
