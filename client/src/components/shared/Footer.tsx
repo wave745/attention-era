@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 export default function Footer() {
   const [timeOnPage, setTimeOnPage] = useState({ minutes: 0, seconds: 0 });
   const [isHoveringCommunity, setIsHoveringCommunity] = useState(false);
+  const [isHoveringXAccount, setIsHoveringXAccount] = useState(false);
   
   // Time counter
   useEffect(() => {
@@ -62,6 +63,7 @@ export default function Footer() {
           <div className="text-center">
             <h4 className="text-white/70 text-sm uppercase mb-3 tracking-wider font-mono">Join Our Community</h4>
             <div className="flex justify-center space-x-5">
+              {/* X Community Link */}
               <motion.a 
                 href="https://x.com/i/communities/1920969888081862674" 
                 target="_blank"
@@ -100,6 +102,49 @@ export default function Footer() {
                   >
                     Join our X Community
                     <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-cyber-black/90 border-r border-b border-cyber-cyan/20 rotate-45"></div>
+                  </motion.div>
+                )}
+              </motion.a>
+
+              {/* X Account Link */}
+              <motion.a 
+                href="https://x.com/attention_era" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative block"
+                aria-label="X Account"
+                onMouseEnter={() => setIsHoveringXAccount(true)}
+                onMouseLeave={() => setIsHoveringXAccount(false)}
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.2 }}
+              >
+                <div className="flex flex-col items-center">
+                  <div className={`p-3 bg-cyber-black border ${isHoveringXAccount ? 'border-cyber-magenta' : 'border-white/20'} rounded-sm transition-colors duration-300 relative overflow-hidden group-hover:shadow-[0_0_15px_rgba(255,0,255,0.3)]`}>
+                    <svg 
+                      xmlns="http://www.w3.org/2000/svg" 
+                      viewBox="0 0 24 24" 
+                      className="w-6 h-6 text-white group-hover:text-cyber-magenta transition-colors duration-300"
+                      fill="currentColor"
+                    >
+                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                    
+                    {/* Glowing effect */}
+                    <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none ${isHoveringXAccount ? 'bg-gradient-radial from-cyber-magenta/5 to-transparent' : ''}`}></div>
+                  </div>
+                  <span className="text-xs text-white/50 mt-2 group-hover:text-cyber-magenta transition-colors duration-300">@attention_era</span>
+                </div>
+                
+                {/* Info tooltip on hover */}
+                {isHoveringXAccount && (
+                  <motion.div 
+                    className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-40 bg-cyber-black/90 backdrop-blur-md border border-cyber-magenta/20 py-2 px-3 rounded-sm text-xs text-white/80 pointer-events-none"
+                    initial={{ opacity: 0, y: 5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    Follow us on X
+                    <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-cyber-black/90 border-r border-b border-cyber-magenta/20 rotate-45"></div>
                   </motion.div>
                 )}
               </motion.a>
