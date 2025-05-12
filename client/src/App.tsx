@@ -9,6 +9,7 @@ import { Cursor } from "@/components/ui/cursor";
 
 import Home from "@/pages/Home";
 import Manifesto from "@/pages/Manifesto";
+import Memes from "@/pages/Memes";
 import NotFound from "@/pages/not-found";
 import Navbar from "@/components/navigation/Navbar";
 import Footer from "@/components/shared/Footer";
@@ -19,6 +20,7 @@ function Router() {
       <Switch>
         <Route path="/" component={Home} />
         <Route path="/manifesto" component={Manifesto} />
+        <Route path="/memes" component={Memes} />
         <Route component={NotFound} />
       </Switch>
     </AnimatePresence>

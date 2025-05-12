@@ -11,7 +11,8 @@ import {
   XIcon, 
   EyeOffIcon, 
   HomeIcon, 
-  FileTextIcon, 
+  FileTextIcon,
+  ImageIcon,
   ExternalLinkIcon
 } from "lucide-react";
 
@@ -35,6 +36,7 @@ export default function Navbar() {
   const navLinks = [
     { label: "HOME", path: "/", icon: HomeIcon },
     { label: "MANIFESTO", path: "/manifesto", icon: FileTextIcon },
+    { label: "MEMES", path: "/memes", icon: ImageIcon },
   ];
 
   // Close mobile menu when route changes

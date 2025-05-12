@@ -743,6 +743,28 @@ html, body {
   animation: scanline 1.5s ease-in-out infinite;
 }
 
+/* Fast scanline animation for memes */
+@keyframes scanline-fast {
+  0% {
+    transform: translateY(-100%);
+    background: rgba(255, 0, 255, 0.15);
+    height: 3px;
+  }
+  50% {
+    background: rgba(0, 255, 255, 0.25);
+    height: 1px;
+  }
+  100% {
+    transform: translateY(100%);
+    background: rgba(255, 255, 0, 0.15);
+    height: 3px;
+  }
+}
+
+.animate-scanline-fast {
+  animation: scanline-fast 0.8s ease-in-out infinite;
+}
+
 /* Gradient Radial for neon effects */
 .bg-gradient-radial {
   background-image: radial-gradient(var(--tw-gradient-stops));
