@@ -90,7 +90,7 @@ export default function Navbar() {
 
   return (
     <nav 
-      className={`fixed top-0 w-full z-40 border-b ${navbarBgClasses} transition-all duration-300 ${navbarGlitchEffect}`}
+      className={`fixed top-8 w-full z-40 border-b ${navbarBgClasses} transition-all duration-300 ${navbarGlitchEffect}`}
       style={{ 
         boxShadow: scrolled ? '0 0 20px rgba(0, 255, 255, 0.05)' : 'none' 
       }}

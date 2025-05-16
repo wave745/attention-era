@@ -13,6 +13,7 @@ import Memes from "@/pages/Memes";
 import NotFound from "@/pages/not-found";
 import Navbar from "@/components/navigation/Navbar";
 import Footer from "@/components/shared/Footer";
+import SolanaBanner from "@/components/shared/SolanaBanner";
 
 function Router() {
   return (
@@ -38,6 +39,7 @@ function App() {
         <Toaster />
         <div className={`app-container ${isReducedMotion ? "reduced-motion" : ""}`}>
           <Cursor />
+          <SolanaBanner />
           <Navbar />
           <main>
             <Router />
