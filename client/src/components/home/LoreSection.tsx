@@ -84,10 +84,10 @@ export default function LoreSection() {
     return (
       <div className="w-full h-full opacity-30 pointer-events-none overflow-hidden relative">
         {Array.from({ length: 30 }).map((_, index) => (
-          <div 
+          <div
             key={index}
             className="absolute top-0 text-cyber-green/30 font-mono text-opacity-30 whitespace-pre"
-            style={{ 
+            style={{
               left: `${(index / 30) * 100}%`,
               animationDelay: `${Math.random() * 5}s`,
               fontSize: '10px',
@@ -107,7 +107,7 @@ export default function LoreSection() {
   const generateRandomMatrixColumn = () => {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$#@%&*!?<>[]{}|/\\=+-_';
     const columnLength = Math.floor(Math.random() * 20) + 30;
-    
+
     return Array.from({ length: columnLength })
       .map(() => characters.charAt(Math.floor(Math.random() * characters.length)))
       .join('\n');
@@ -118,10 +118,10 @@ export default function LoreSection() {
       <div className="absolute inset-0 opacity-30 pointer-events-none">
         <MatrixBackground />
       </div>
-      
+
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto">
-          <motion.div 
+          <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -133,10 +133,10 @@ export default function LoreSection() {
             <div className="h-px w-24 mx-auto bg-cyber-magenta mb-3"></div>
             <p className="text-white/70 font-sans">Fragments from the digital prophecy. Scroll to unlock.</p>
           </motion.div>
-          
+
           {/* Lore timeline with scroll reveal */}
           {loreItems.map((item, index) => (
-            <motion.div 
+            <motion.div
               key={index}
               className="lore-item mb-20"
               initial={{ opacity: 0, y: 20 }}
@@ -144,7 +144,7 @@ export default function LoreSection() {
               transition={{ duration: 0.7, ease: "easeOut" }}
             >
               <div className="relative">
-                <div className={`ml-6 pl-6 border-l ${item.borderColor}`}>
+                <div className={`ml-2 pl-4 sm:ml-6 sm:pl-6 border-l ${item.borderColor}`}>
                   <div className={`absolute left-0 w-3 h-3 rounded-full bg-${item.logColor.replace('text-', '')} transform -translate-x-1.5 mt-1`}></div>
                   <h3 className="text-xl font-bold mb-3">
                     <RGBSplitText>
