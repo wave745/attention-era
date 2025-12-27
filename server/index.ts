@@ -1,5 +1,6 @@
 import { buildApp } from "./app";
-import { setupVite, serveStatic, log } from "./vite";
+import { setupVite, serveStatic } from "./vite";
+import { log } from "./log";
 
 (async () => {
   const { app, server } = await buildApp();

@@ -8,16 +8,7 @@ import { nanoid } from "nanoid";
 
 const viteLogger = createLogger();
 
-export function log(message: string, source = "express") {
-  const formattedTime = new Date().toLocaleTimeString("en-US", {
-    hour: "numeric",
-    minute: "2-digit",
-    second: "2-digit",
-    hour12: true,
-  });
 
-  console.log(`${formattedTime} [${source}] ${message}`);
-}
 
 export async function setupVite(app: Express, server: Server) {
   const serverOptions = {
@@ -68,7 +59,7 @@ export async function setupVite(app: Express, server: Server) {
 }
 
 export function serveStatic(app: Express) {
-  const distPath = path.resolve(import.meta.dirname, "public");
+  const distPath = path.resolve(import.meta.dirname);
 
   if (!fs.existsSync(distPath)) {
     throw new Error(
