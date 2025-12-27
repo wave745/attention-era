@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { storage } from "./storage";
 
-export async function registerRoutes(app: Express): Promise<void> {
+export function registerRoutes(app: Express): void {
   // API endpoint for submitting contact form
   app.post("/api/contact", async (req, res) => {
     try {

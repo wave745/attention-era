@@ -38,7 +38,7 @@ app.use((req, res, next) => {
 });
 
 (async () => {
-  await registerRoutes(app);
+  registerRoutes(app);
   const server = createServer(app);
 
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
@@ -46,7 +46,10 @@ app.use((req, res, next) => {
     const message = err.message || "Internal Server Error";
 
     res.status(status).json({ message });
-    throw err;
+    // Avoid crashing the process in production/serverless environments.
+    if (app.get("env") === "development") {
+      throw err;
+    }
   });
 
   // importantly only setup vite in development and after
