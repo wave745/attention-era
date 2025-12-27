@@ -133,7 +133,7 @@ export function TerminalInput() {
         </div>
         
         <form onSubmit={handleSubmit} className="flex items-center">
-          <span className="text-cyber-cyan mr-2">></span>
+          <span className="text-cyber-cyan mr-2">{">"}</span>
           <input
             ref={inputRef}
             type="text"
